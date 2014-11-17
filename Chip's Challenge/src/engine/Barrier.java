@@ -15,7 +15,7 @@ public class Barrier extends Floor{
     public Barrier(){
         
     }
-     
+    
     public boolean isVisible(){
         if(super.chipLeft==0){
             return false;

@@ -16,7 +16,7 @@ public abstract class Boots {
      
     public Boots()
     {}
-    
+ 
     public abstract boolean isKill();
     
     

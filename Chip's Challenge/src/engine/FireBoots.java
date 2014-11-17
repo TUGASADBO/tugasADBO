@@ -10,7 +10,7 @@ package engine;
  *
  * @author RICKY
  */
-public class FireBoots extends Boots{
+public class FireBoots extends Boots {
 
     @Override
     public boolean isKill() {
