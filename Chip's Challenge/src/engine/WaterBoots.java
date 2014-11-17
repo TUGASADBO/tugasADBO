@@ -10,6 +10,11 @@ package engine;
  *
  * @author RICKY
  */
-public class WaterBoots {
+public class WaterBoots extends Boots{
+
+    @Override
+    public boolean isKill() {
+        return true;
+    }
     
 }

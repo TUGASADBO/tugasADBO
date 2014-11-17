@@ -10,6 +10,17 @@ package engine;
  *
  * @author RICKY
  */
-public class Boots {
+public abstract class Boots {
+    
+    protected boolean isWearBoots;
+     
+    public Boots()
+    {}
+    
+    public abstract boolean isKill();
+    
+    
+    
+    
     
 }

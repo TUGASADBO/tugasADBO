@@ -4,11 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Barrier.java</file>
-            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Dinding.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/FireBoots.java</file>
             <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Floor.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/FireBoots.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/WaterBoots.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/RemoveBoots.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Boots.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/WaterBoots.java</file>
             <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/controller/controller.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/Map.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Water.java</file>
             <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/Fire.java</file>
-            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/engine/IntegratedCircuit.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/WaterFloor.java</file>
+            <file>file:/C:/Users/RICKY/Documents/GitHub/tugasADBO/Chip's%20Challenge/src/gui/WallImage.java</file>
         </group>
     </open-files>
 </project-private>

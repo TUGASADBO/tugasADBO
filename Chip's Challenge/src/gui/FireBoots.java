@@ -22,7 +22,7 @@ public class FireBoots extends JPanel {
     int y;
 
     public FireBoots(int x, int y) {
-        String imageName = "FireBoots.png";
+        String imageName = "FireShoes.png";
         ImageIcon icon = null;
         this.x = x;
         this.y = y;
