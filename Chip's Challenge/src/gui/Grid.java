@@ -6,6 +6,7 @@
 
 package gui;
 
+import engine.Floor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
  * @author i13026 i13011
  */
 public class Grid extends JPanel{
+    protected Floor[] floor;
     Image image;
     int x;
     int y;

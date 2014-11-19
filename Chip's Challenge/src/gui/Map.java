@@ -45,12 +45,10 @@ public class Map extends JPanel implements Runnable {
             for (int j = 0; j < 550; j += 50) {
                 grid = new Grid(i, j);
                 grid.paintComponent(g2d);
-
             }
         }
         int s = 50;
-        chip = new ChipDown(5 * s, 1 * s);
-        chip.paintComponent(g2d);
+        new ChipDown(5 * s, 1 * s).paintComponent(g2d);
         ic = new ICImage(2 * s, 1 * s);
         ic.paintComponent(g2d);
         wall = new WallImage(3 * s, 1 * s);

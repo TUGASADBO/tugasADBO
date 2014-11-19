@@ -21,7 +21,7 @@ public class WaterFloor extends JPanel{
     int x;
     int y;
     public WaterFloor(int x, int y){
-        String imageName = "WaterFloor.png";
+        String imageName = "waterFloor.png";
         ImageIcon icon = null;
         this.x=x;
         this.y=y;
