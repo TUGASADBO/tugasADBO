@@ -10,7 +10,7 @@ package engine;
  *
  * @author i13026 i13011
  */
-public class Chip extends Floor{
+public class PlainFloor extends Floor{
     @Override
     public boolean isCanMove() {
         return true;

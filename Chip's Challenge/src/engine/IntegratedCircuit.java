@@ -14,14 +14,6 @@ public class IntegratedCircuit extends Floor{
     public IntegratedCircuit() {
         
     }
-    
-    public int getChipLeft(){
-        return super.chipLeft;
-    }
-    
-    public void setChipLeft(int chip){
-        super.chipLeft=chip;
-    }
 
     @Override
     public boolean isCanMove() {

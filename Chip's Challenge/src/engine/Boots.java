@@ -10,17 +10,21 @@ package engine;
  *
  * @author RICKY
  */
-public abstract class Boots {
+public abstract class Boots extends Floor{
     
-    protected boolean isWearBoots;
+    protected boolean isWearFireBoots;
+    protected boolean isWearWaterBoots;
      
     public Boots()
     {}
  
-    public abstract boolean isKill();
+    public abstract void setWearBoots();
     
+    public boolean getIsWearFireBoots(){
+        return this.isWearFireBoots;
+    }
     
-    
-    
-    
+    public boolean getIsWearWaterBoots(){
+        return this.isWearWaterBoots;
+    }
 }
