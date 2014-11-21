@@ -22,7 +22,7 @@ public class RemoveBoots extends JPanel {
     int y;
 
     public RemoveBoots(int x, int y) {
-        String imageName = "RemoveBoots.png";
+        String imageName = "removalFloor.png";
         ImageIcon icon = null;
         this.x = x;
         this.y = y;

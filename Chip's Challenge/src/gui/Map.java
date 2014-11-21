@@ -115,6 +115,15 @@ public class Map extends JPanel implements Runnable {
         fire = new FireFloor(5 * s, 4 * s);
         fire.paintComponent(g2d);
 
+        Water = new WaterFloor(4 * s, 4 * s);
+        Water.paintComponent(g2d);
+        Water = new WaterFloor(6 * s, 4 * s);
+        Water.paintComponent(g2d);
+        Water = new WaterFloor(4 * s, 6 * s);
+        Water.paintComponent(g2d);
+        Water = new WaterFloor(6 * s, 6 * s);
+        Water.paintComponent(g2d);
+
         ic = new ICImage(2 * s, 1 * s);
         ic.paintComponent(g2d);
         ic = new ICImage(8 * s, 1 * s);
