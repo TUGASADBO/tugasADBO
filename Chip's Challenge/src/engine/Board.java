@@ -29,7 +29,7 @@ public class Board {
                 floor[10][i] = new Wall();
             }
         }
-        floor[1][1] = new PlainFloor();
+        floor[1][1] = new FireFloor();
         floor[2][1] = new PlainFloor();
         floor[3][1] = new PlainFloor();
         floor[4][1] = new IntegratedCircuit();chipLeft++;
@@ -37,30 +37,31 @@ public class Board {
         floor[6][1] = new IntegratedCircuit();chipLeft++;
         floor[7][1] = new PlainFloor();
         floor[8][1] = new PlainFloor();
-        floor[9][1] = new PlainFloor();
+        floor[9][1] = new FireFloor();
 
         floor[1][2] = new PlainFloor();
-        floor[2][2] = new FireFloor();
+        floor[2][2] = new PlainFloor();
         floor[3][2] = new FireFloor();
         floor[4][2] = new FireFloor();
         floor[5][2] = new Wall();
         floor[6][2] = new FireFloor();
         floor[7][2] = new FireFloor();
-        floor[8][2] = new FireFloor();
+        floor[8][2] = new PlainFloor();
         floor[9][2] = new PlainFloor();
 
         floor[1][3] = new PlainFloor();
-        floor[2][3] = new PlainFloor();
-        floor[3][3] = new PlainFloor();
-        floor[4][3] = new PlainFloor();
+        floor[2][3] = new Wall();
+        floor[3][3] = new Wall();
+        floor[4][3] = new Wall();
         floor[5][3] = new Wall();
-        floor[6][3] = new PlainFloor();
-        floor[7][3] = new PlainFloor();
-        floor[8][3] = new PlainFloor();
+        floor[6][3] = new Wall();
+        floor[7][3] = new Wall();
+        floor[8][3] = new Wall();
         floor[9][3] = new PlainFloor();
         for (int i = 1; i < floor.length - 1; i++) {
             floor[i][4] = new PlainFloor();
         }
+        
         
         floor[1][5] = new FireFloor();
         floor[2][5] = new FireFloor();

@@ -57,9 +57,9 @@ public class Drawer extends JPanel{
                     img=chip;
                 } else if(board.getFloor()[i][j].getClass().equals(IntegratedCircuit.class)){
                     img=ICImage;
-                } else if(board.getFloor()[i][j].getClass().equals(FireFloor.class)){
+                } else if(board.getFloor()[i][j].getClass().equals(FireFloorr.class)){
                     img=fireImage;
-                } else if(board.getFloor()[i][j].getClass().equals(FinishFloor.class)){
+                } else if(board.getFloor()[i][j].getClass().equals(FinishFloorr.class)){
                     img=finishImage;
                 } else if(board.getFloor()[i][j].getClass().equals(PlainFloor.class)){
                     img=floorImage;

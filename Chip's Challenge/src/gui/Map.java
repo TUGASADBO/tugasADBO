@@ -22,8 +22,8 @@ public class Map extends JPanel implements Runnable {
 
     BarrierGrid bg;
     Grid grid;
-    FinishFloor finf;
-    FireFloor fire;
+    FinishFloorr finf;
+    FireFloorr fire;
     WallImage wall;
     ICImage ic;
     ChipDown chip;
@@ -104,15 +104,15 @@ public class Map extends JPanel implements Runnable {
         bg = new BarrierGrid(5 * s, 7 * s);
         bg.paintComponent(g2d);
 
-        fire = new FireFloor(5 * s, 5 * s);
+        fire = new FireFloorr(5 * s, 5 * s);
         fire.paintComponent(g2d);
-        fire = new FireFloor(4 * s, 5 * s);
+        fire = new FireFloorr(4 * s, 5 * s);
         fire.paintComponent(g2d);
-        fire = new FireFloor(5 * s, 6 * s);
+        fire = new FireFloorr(5 * s, 6 * s);
         fire.paintComponent(g2d);
-        fire = new FireFloor(6 * s, 5 * s);
+        fire = new FireFloorr(6 * s, 5 * s);
         fire.paintComponent(g2d);
-        fire = new FireFloor(5 * s, 4 * s);
+        fire = new FireFloorr(5 * s, 4 * s);
         fire.paintComponent(g2d);
 
         Water = new WaterFloor(4 * s, 4 * s);
@@ -133,7 +133,7 @@ public class Map extends JPanel implements Runnable {
         ic = new ICImage(8 * s, 9 * s);
         ic.paintComponent(g2d);
 
-        finf = new FinishFloor(5 * s, 9 * s);
+        finf = new FinishFloorr(5 * s, 9 * s);
         finf.paintComponent(g2d);
 
         WB = new WaterBoots(1 * s, 1 * s);
