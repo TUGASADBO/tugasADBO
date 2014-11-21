@@ -9,18 +9,10 @@ package engine;
  *
  * @author i13026 i13011
  */
-public class Finish extends Floor{
+public class FireFloor extends Floor{
     
-    public Finish(){
+    public FireFloor(){
         
-    }
-    
-    public boolean isFinish(){
-        return super.isFinish;
-    }
-    
-    public void setFinish(){
-        super.isFinish = true;
     }
     
     @Override
@@ -30,6 +22,6 @@ public class Finish extends Floor{
 
     @Override
     public boolean isKill() {
-        return false;
+        return true;
     }
 }
