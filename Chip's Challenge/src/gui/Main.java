@@ -52,69 +52,95 @@ public class Main extends JPanel {
         open = false;
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
-            Floor flo= null;
+            Floor flo = null;
+
             @Override
             public void keyPressed(KeyEvent e) {
                 if (!board.getIsFinish() && !board.getIsGameOver()) {
                     switch (e.getKeyCode()) {
                         case KeyEvent.VK_LEFT:
-                            flo = board.getFloor()[((curX-50)/50)-1][((curY)/50)-1];
-                            if(flo.isCanMove()){
-                                if(flo.isKill()){
+                            
+                            flo = board.getFloor()[((curX - 50) / 50) - 1][((curY) / 50) - 1];
+                            if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)){
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX - 50) / 50) - 1, ((curY / 50) - 1));
+                                curX -= 50;
+                            }
+                            else if (flo.isCanMove()) {
+                                if (flo.isKill()) {
                                     board.setIsGameOver();
-                                } else if(flo.getClass().equals(IntegratedCircuit.class)){
+                                } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                                     board.setChipLeft();
                                 }
-                                board.setFloor(new PlainFloor(),(curX/50)-1,(curY/50)-1);
-                                board.setFloor(new Chip(), ((curX-50)/50)-1, ((curY/50)-1));
-                                curX-=50;
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX - 50) / 50) - 1, ((curY / 50) - 1));
+                                curX -= 50;
                             }
+                            
                             break;
                         case KeyEvent.VK_RIGHT:
-                            flo = board.getFloor()[((curX+50)/50)-1][(curY/50)-1];
-                            if(flo.isCanMove()){
-                                if(flo.isKill()){
+                            flo = board.getFloor()[((curX + 50) / 50) - 1][(curY / 50) - 1];
+                            if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)){
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX + 50) / 50) - 1, ((curY / 50) - 1));
+                                curX += 50;
+                            }
+                            else if (flo.isCanMove()) {
+                                if (flo.isKill()) {
                                     board.setIsGameOver();
-                                } else if(flo.getClass().equals(IntegratedCircuit.class)){
+                                } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                                     board.setChipLeft();
                                 }
-                                board.setFloor(new PlainFloor(),(curX/50)-1,(curY/50)-1);
-                                board.setFloor(new Chip(), ((curX+50)/50)-1, ((curY/50)-1));
-                                curX+=50;
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX + 50) / 50) - 1, ((curY / 50) - 1));
+                                curX += 50;
                             }
                             break;
                         case KeyEvent.VK_DOWN:
-                            flo = board.getFloor()[((curX)/50)-1][((curY+50)/50)-1];
-                            if(flo.isCanMove()){
-                                if(flo.isKill()){
+                            flo = board.getFloor()[((curX) / 50) - 1][((curY + 50) / 50) - 1];
+                            if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), 5, 7);
+                                curY+=50;
+                            } else if (flo.isCanMove()) {
+                                if (flo.isKill()) {
                                     board.setIsGameOver();
-                                } else if(flo.getClass().equals(IntegratedCircuit.class)){
+                                } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                                     board.setChipLeft();
                                 }
-                                board.setFloor(new PlainFloor(),(curX/50)-1,(curY/50)-1);
-                                board.setFloor(new Chip(), ((curX)/50)-1, (((curY+50)/50)-1));
-                                curY+=50;
+                                if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
+
+                                    board.setFloor(new PlainFloor(), 5, 7);
+                                }
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX) / 50) - 1, (((curY + 50) / 50) - 1));
+                                curY += 50;
                             }
                             break;
                         case KeyEvent.VK_UP:
-                            flo = board.getFloor()[((curX)/50)-1][((curY-50)/50)-1];
-                            if(flo.isCanMove()){
-                                if(flo.isKill()){
+                            flo = board.getFloor()[((curX) / 50) - 1][((curY - 50) / 50) - 1];
+                            if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)){
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX) / 50) - 1, (((curY - 50) / 50) - 1));
+                                curY -= 50;
+                            }
+                            else if (flo.isCanMove()) {
+                                if (flo.isKill()) {
                                     board.setIsGameOver();
-                                } else if(flo.getClass().equals(IntegratedCircuit.class)){
+                                } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                                     board.setChipLeft();
                                 }
-                                board.setFloor(new PlainFloor(),(curX/50)-1,(curY/50)-1);
-                                board.setFloor(new Chip(), ((curX)/50)-1, (((curY-50)/50)-1));
-                                curY-=50;
+                                board.setFloor(new PlainFloor(), (curX / 50) - 1, (curY / 50) - 1);
+                                board.setFloor(new Chip(), ((curX) / 50) - 1, (((curY - 50) / 50) - 1));
+                                curY -= 50;
+                            }
+                            if ((board.equals(Barrier.class)) && (open == true)) {
+                                board.setFloor(new PlainFloor(), 5, 7);
                             }
                             break;
                     }
                     repaint();
-                    if(board.getChipLeft()==0&&!open){
-                        board.setFloor(new PlainFloor(),5,7);
-                        open=true;
-                    }
+
                 }
             }
         });

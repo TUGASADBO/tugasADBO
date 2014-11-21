@@ -17,7 +17,7 @@ public class Barrier extends Floor{
     }
     
     public boolean isVisible(){
-        if(super.chipLeft==0){
+        if(super.chipLeft!=0){
             return false;
         } else{
             return true;
@@ -34,10 +34,10 @@ public class Barrier extends Floor{
 
     @Override
     public boolean isCanMove() {
-        if(isVisible() == true){
+        if(isVisible() !=true){
             return false;
         } else{
-            return false;
+            return true;
         }
     }
 
