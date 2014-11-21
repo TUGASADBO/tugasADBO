@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package engine;
 
 /**
  *
  * @author i13026 i13011
  */
-public class Board {
-
+public class BoardLevel2 {
     private Floor[][] floor;
     
     protected boolean isFinish;
     protected int chipLeft;
     protected boolean isGameOver;
 
-    public Board() {
+    public BoardLevel2() {
         isGameOver = false;
         isFinish = false;
         floor = new Floor[11][11];

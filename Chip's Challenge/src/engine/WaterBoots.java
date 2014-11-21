@@ -13,8 +13,18 @@ package engine;
 public class WaterBoots extends Boots{
 
     @Override
-    public boolean isKill() {
+    public void setWearBoots() {
+        super.isWearWaterBoots = true;
+    }
+
+    @Override
+    public boolean isCanMove() {
         return true;
+    }
+
+    @Override
+    public boolean isKill() {
+        return false;
     }
     
 }

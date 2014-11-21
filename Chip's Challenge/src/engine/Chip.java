@@ -11,17 +11,27 @@ package engine;
  * @author i13026 i13011
  */
 public class Chip extends Floor{
+    private int direction;
+    
+    public Chip(){
+        this.direction = 1;
+    }
+    
     @Override
     public boolean isCanMove() {
-        if(super.isGameOver==false||super.isFinish==false){
-            return true;
-        } else{
-            return false;
-        }
+        return true;
     }
 
     @Override
     public boolean isKill() {
         return false;
+    }
+    
+    public int getDirection(){
+        return direction;
+    }
+    
+    public void setDirection(int newDirection){
+        this.direction=newDirection;
     }
 }

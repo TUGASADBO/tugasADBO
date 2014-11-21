@@ -10,34 +10,26 @@ package engine;
  * @author i13026 i13011
  */
 public class Barrier extends Floor{
-    private boolean isBarrier;
+    private boolean barrier;
     
     public Barrier(){
         
     }
-    
-    public boolean isVisible(){
-        if(super.chipLeft!=0){
-            return false;
-        } else{
-            return true;
-        }
-    }
-    
+
     public boolean isBarrier(){
-        return isBarrier;
+        return barrier;
     }
     
     public void setBarrier(){
-        this.isBarrier = false;
+        this.barrier = false;
     }
 
     @Override
     public boolean isCanMove() {
-        if(isVisible() !=true){
+        if(barrier == true){
             return false;
         } else{
-            return true;
+            return false;
         }
     }
 
