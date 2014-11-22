@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package engine;
 
 import java.util.ArrayList;
@@ -13,33 +12,36 @@ import java.util.ArrayList;
  * @author i13026 i13011
  */
 public class GamePlay {
+
     private ArrayList<Board> board;
     protected int level;
-    
-    public GamePlay(){
+
+    public GamePlay() {
         this.level = 1;
         board = new ArrayList<Board>();
         board.add(new BoardLevel1());
         board.add(new BoardLevel2());
+        board.add(new BoardLevel3());
+        board.add(new BoardLevel4());
     }
-    
-    public ArrayList<Board> getListBoard(){
+
+    public ArrayList<Board> getListBoard() {
         return this.board;
     }
-    
-    public Board getBoard(){
-        return board.get(level-1);
+
+    public Board getBoard() {
+        return board.get(level - 1);
     }
-    
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
-    
-    public void addLevel(){
+
+    public void addLevel() {
         level++;
     }
-    
-    public void resetGame(){
+
+    public void resetGame() {
         new GamePlay();
     }
 }

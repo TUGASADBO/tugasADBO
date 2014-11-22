@@ -17,6 +17,7 @@ public class BoardLevel1 extends Board{
         isFinish = false;
         chipLeft = 0;
         floor = new Floor[11][11];
+        
         for (int i = 0; i < floor.length; i++) {
             floor[i][0] = new Wall();
             floor[i][10] = new Wall();

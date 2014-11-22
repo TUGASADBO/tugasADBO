@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class Main extends JPanel {
 
-    Board board;
+    Board board; 
     GamePlay game;
     Chip chip;
     Image wallImage;
@@ -143,6 +143,8 @@ public class Main extends JPanel {
                             board.setChipLeft();
                         } else if (flo.getClass().equals(FinishFloor.class)) {
                             board.setFinish();
+                            chip.setWearFireBoot(false);
+                            chip.setWearWaterBoot(false);
                             game.addLevel();
                             board = game.getBoard();
                             curX = 300;
@@ -236,7 +238,7 @@ public class Main extends JPanel {
         Main ma = new Main();
         game.getContentPane().add("Center", ma);
         game.pack();
-        game.setSize(new Dimension(650, 670));
+        game.setSize(new Dimension(1366, 768));
         game.setLocationRelativeTo(null);
         game.setVisible(true);
     }
