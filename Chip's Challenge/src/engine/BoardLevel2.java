@@ -89,7 +89,7 @@ public class BoardLevel2 {
         floor[9][6] = new IntegratedCircuit();
         chipLeft++;
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 7; i++) {
             floor[i][7] = new PlainFloor();
         }
         floor[7][7] = new Wall();

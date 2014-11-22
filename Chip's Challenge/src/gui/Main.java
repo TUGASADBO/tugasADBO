@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class Main extends JPanel {
 
-    Board board;
+    BoardLevel2 board;
     Chip chip;
     Image wallImage;
     Image floorImage;
@@ -38,7 +38,7 @@ public class Main extends JPanel {
 
     public Main() throws IOException {
         chip = new Chip();
-        board = new Board();
+        board = new BoardLevel2();
         wallImage = ImageIO.read(getClass().getClassLoader().getResource("image/wall.png"));
         floorImage = ImageIO.read(getClass().getClassLoader().getResource("image/plainFloor.png"));
         ICImage = ImageIO.read(getClass().getClassLoader().getResource("image/IC.png"));
