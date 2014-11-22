@@ -78,7 +78,6 @@ public class Main extends JPanel {
                             flo = board.getFloor()[xMove][yMove];
                             if (flo.isObstacles()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
-                                    board.setFloor(floAwal, xAwal, yAwal);
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curX -= 50;
                                 }
@@ -93,7 +92,6 @@ public class Main extends JPanel {
                             flo = board.getFloor()[xMove][yMove];
                             if (flo.isObstacles()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
-                                    board.setFloor(floAwal, xAwal, yAwal);
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curX += 50;
                                 }
@@ -108,7 +106,6 @@ public class Main extends JPanel {
                             flo = board.getFloor()[xMove][yMove];
                             if (flo.isObstacles()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
-                                    board.setFloor(floAwal, xAwal, yAwal);
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curY += 50;
                                 }
@@ -123,7 +120,6 @@ public class Main extends JPanel {
                             flo = board.getFloor()[xMove][yMove];
                             if (flo.isObstacles()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
-                                    board.setFloor(floAwal, xAwal, yAwal);
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curY -= 50;
                                 }
@@ -134,6 +130,7 @@ public class Main extends JPanel {
                             break;
                         case KeyEvent.VK_ENTER:
                             game.resetGame();
+                            break;
                     }
                     repaint();
                     flo = board.getFloor()[xMove][yMove];
@@ -148,7 +145,6 @@ public class Main extends JPanel {
                             board.setFinish();
                             game.addLevel();
                             board = game.getBoard();
-                            chip = board.getChip();
                             curX = 300;
                             curY = 300;
                         }
@@ -163,8 +159,6 @@ public class Main extends JPanel {
                         } else if (flo.getClass().equals(WaterBoots.class)) {
                             chip.setWearWaterBoot(true);
                         }
-                    } else if (board.getIsGameOver()) {
-                        game.resetGame();
                     }
                 }
             }
@@ -187,6 +181,12 @@ public class Main extends JPanel {
                     g2d.drawImage(chipLeft, curX, curY, null);
                 }
             }
+        }
+        if (board.getIsGameOver()) {
+            g2d.drawString("Press Enter to restart", 300, 300);
+        } else if(game.getLevel()>game.getListBoard().size()){
+            setBackground(Color.BLACK);
+            g2d.drawString("Press Enter to restart", 300, 300);
         }
     }
 

@@ -23,6 +23,10 @@ public class GamePlay {
         board.add(new BoardLevel2());
     }
     
+    public ArrayList<Board> getListBoard(){
+        return this.board;
+    }
+    
     public Board getBoard(){
         return board.get(level-1);
     }
