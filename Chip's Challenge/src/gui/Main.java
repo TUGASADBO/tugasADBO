@@ -160,6 +160,17 @@ public class Main extends JPanel {
                             chip.setWearWaterBoot(true);
                         }
                     }
+                } else if (board.getIsGameOver()) {
+                    switch (e.getKeyCode()) {
+                        case KeyEvent.VK_ENTER:
+                            game= new GamePlay();
+                            board=game.getBoard();
+                            chip.setDirection(1);
+                            curX=300;
+                            curY=300;
+                            break;
+                    }
+                    repaint();
                 }
             }
         });
@@ -182,12 +193,12 @@ public class Main extends JPanel {
                 }
             }
         }
-        if (board.getIsGameOver()) {
-            g2d.drawString("Press Enter to restart", 300, 300);
-        } else if(game.getLevel()>game.getListBoard().size()){
-            setBackground(Color.BLACK);
-            g2d.drawString("Press Enter to restart", 300, 300);
-        }
+//        if (board.getIsGameOver()) {
+//            g2d.drawString("Press Enter to restart", 300, 300);
+//        } else if(game.getLevel()>game.getListBoard().size()){
+//            setBackground(Color.BLACK);
+//            g2d.drawString("Press Enter to restart", 300, 300);
+//        }
     }
 
     public Image getImage(Floor floor) {
