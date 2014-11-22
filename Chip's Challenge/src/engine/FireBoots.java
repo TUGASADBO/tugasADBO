@@ -10,12 +10,7 @@ package engine;
  *
  * @author RICKY
  */
-public class FireBoots extends Boots {
-
-    @Override
-    public void setWearBoots() {
-        super.isWearFireBoots = true;
-    }
+public class FireBoots extends Boots{
 
     @Override
     public boolean isCanMove() {
@@ -26,5 +21,9 @@ public class FireBoots extends Boots {
     public boolean isKill() {
         return false;
     }
-    
+
+    @Override
+    public boolean isObstacles() {
+        return false;
+    }
 }

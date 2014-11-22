@@ -8,10 +8,8 @@ package engine;
 
 /**
  *
- * @author RICKY
+ * @author i13026 i13011
  */
-public abstract class Boots extends Floor{
-
-    public Boots()
-    {}
+public interface Obstacle {
+    public abstract boolean isObstacles();
 }

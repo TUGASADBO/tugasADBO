@@ -9,8 +9,7 @@ package engine;
  *
  * @author i13026 i13011
  */
-public abstract class Floor {
-    
+public abstract class Floor implements Obstacle{
     
     public Floor(){
         

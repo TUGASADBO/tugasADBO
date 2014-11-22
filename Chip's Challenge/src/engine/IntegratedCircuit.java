@@ -24,4 +24,9 @@ public class IntegratedCircuit extends Floor{
     public boolean isKill() {
         return false;
     }
+
+    @Override
+    public boolean isObstacles() {
+        return false;
+    }
 }

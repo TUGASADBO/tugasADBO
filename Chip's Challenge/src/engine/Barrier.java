@@ -26,15 +26,16 @@ public class Barrier extends Floor{
 
     @Override
     public boolean isCanMove() {
-        if(barrier == true){
-            return false;
-        } else{
-            return false;
-        }
+        return false;
     }
 
     @Override
     public boolean isKill() {
         return false;
+    }
+
+    @Override
+    public boolean isObstacles() {
+        return true;
     }
 }

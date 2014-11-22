@@ -24,4 +24,10 @@ public class FireFloor extends Floor{
     public boolean isKill() {
         return true;
     }
+
+    @Override
+    public boolean isObstacles() {
+        return false;
+    }
+
 }

@@ -3,35 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package engine;
 
 /**
  *
  * @author i13026 i13011
  */
-public class Chip extends Floor{
+public class Chip{
+
     private int direction;
-    
-    public Chip(){
+    private boolean isWearFireBoot;
+    private boolean isWearWaterBoot;
+    private int positionX;
+    private int positionY;
+
+    public Chip() {
         this.direction = 1;
-    }
-    
-    @Override
-    public boolean isCanMove() {
-        return true;
+        positionX = 300;
+        positionY = 300;
     }
 
-    @Override
-    public boolean isKill() {
-        return false;
-    }
-    
-    public int getDirection(){
+    public int getDirection() {
         return direction;
     }
+
+    public void setDirection(int newDirection) {
+        this.direction = newDirection;
+    }
+
+    public boolean wearFireBoot() {
+        return isWearFireBoot;
+    }
+
+    public boolean wearWaterBoot() {
+        return isWearWaterBoot;
+    }
+
+    public void setWearFireBoot(boolean bool) {
+        isWearFireBoot = bool;
+    }
+
+    public void setWearWaterBoot(boolean bool) {
+        isWearWaterBoot = bool;
+    }
     
-    public void setDirection(int newDirection){
-        this.direction=newDirection;
+    public int getPositionX(){
+        return positionX;
+    }
+    
+    public int getPositionY(){
+        return positionY;
     }
 }

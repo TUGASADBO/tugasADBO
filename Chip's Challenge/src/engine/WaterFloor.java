@@ -12,10 +12,6 @@ package engine;
  */
 public class WaterFloor extends Floor{
 
-    public void setGameOver(){
-        
-    }
-    
     @Override
     public boolean isCanMove() {
         return true;
@@ -24,5 +20,10 @@ public class WaterFloor extends Floor{
     @Override
     public boolean isKill() {
         return true;
+    }
+
+    @Override
+    public boolean isObstacles() {
+        return false;
     }
 }

@@ -20,4 +20,10 @@ public class PlainFloor extends Floor{
     public boolean isKill() {
         return false;
     }
+
+    @Override
+    public boolean isObstacles() {
+        return false;
+    }
+
 }

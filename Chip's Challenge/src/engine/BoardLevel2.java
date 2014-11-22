@@ -9,17 +9,13 @@ package engine;
  *
  * @author i13026 i13011
  */
-public class BoardLevel2 {
-
-    private Floor[][] floor;
-
-    protected boolean isFinish;
-    protected int chipLeft;
-    protected boolean isGameOver;
+public class BoardLevel2 extends Board{
 
     public BoardLevel2() {
+        chip = new Chip();
         isGameOver = false;
         isFinish = false;
+        chipLeft = 0;
         floor = new Floor[11][11];
         for (int i = 0; i < floor.length; i++) {
             floor[i][0] = new Wall();
@@ -86,10 +82,9 @@ public class BoardLevel2 {
         floor[6][6] = new PlainFloor();
         floor[7][6] = new Wall();
         floor[8][6] = new Wall();
-        floor[9][6] = new IntegratedCircuit();
-        chipLeft++;
+        floor[9][6] = new FireFloor();
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 7; i++) {
             floor[i][7] = new PlainFloor();
         }
         floor[7][7] = new Wall();
@@ -116,41 +111,5 @@ public class BoardLevel2 {
         floor[7][9] = new FireFloor();
         floor[8][9] = new FireFloor();
         floor[9][9] = new FinishFloor();
-    }
-
-    public void setFloor(Floor flo, int x, int y) {
-        this.floor[x][y] = flo;
-    }
-
-    public Floor[][] getFloor() {
-        return this.floor;
-    }
-
-    public int getLength() {
-        return this.floor.length;
-    }
-
-    public int getChipLeft() {
-        return this.chipLeft;
-    }
-
-    public void setChipLeft() {
-        this.chipLeft--;
-    }
-
-    public boolean getIsFinish() {
-        return isFinish;
-    }
-
-    public void setFinish() {
-        isFinish = true;
-    }
-
-    public boolean getIsGameOver() {
-        return isGameOver;
-    }
-
-    public void setIsGameOver() {
-        isGameOver = true;
     }
 }
