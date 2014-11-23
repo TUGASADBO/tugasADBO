@@ -289,6 +289,9 @@ public class Main extends JPanel implements Runnable{
     public void run() {
         while(true){
             time--;
+            if(time == 0){
+                game.setIsGameOver(true);
+            }
             repaint();
             try{
                 Thread.sleep(1000);
