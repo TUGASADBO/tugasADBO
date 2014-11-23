@@ -201,7 +201,7 @@ public class Main extends JPanel implements Runnable{
             g2d.drawString("CHIP LEFT : " + board.getChipLeft(), 300, 35);
             g2d.drawString("SCORE : "+game.getScore(),450,35);
             for (int i = 0; i < board.getLength(); i++) {
-                for (int j = 0; j < board.getLength(); j++) {
+                for (int j = 0; j < board.getHeight(); j++) {
                     Image img = this.getImage(board.getFloor()[i][j]);
                     g2d.drawImage(img, 50 * (i + 1), 50 * (j + 1), null);
                     if (chip.getDirection() == 1) {

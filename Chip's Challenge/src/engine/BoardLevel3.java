@@ -15,16 +15,18 @@ public class BoardLevel3 extends Board {
         chip = new Chip();
         chipLeft = 0;
         time = 100;
-        floor = new Floor[15][15];
+        floor = new Floor[15][11];
         chip.setPositionX(400);
         chip.setPositionY(400);
         for (int i = 0; i < floor.length; i++) {
             floor[i][0] = new Wall();
-            floor[i][14] = new Wall();
-            if (i > 0 || i < 14) {
-                floor[0][i] = new Wall();
-                floor[14][i] = new Wall();
-            }
+            floor[i][10] = new Wall();
+           
+        }
+        for(int i=0;i<=10;i++)
+        {
+            floor[0][i] = new Wall();
+            floor[14][i] = new Wall();
         }
         floor[1][1] = new PlainFloor();
         floor[2][1] = new FireFloor();
@@ -111,14 +113,14 @@ public class BoardLevel3 extends Board {
         floor[2][7] = new PlainFloor();
         floor[3][7] = new FireFloor();
         floor[4][7] = new FireFloor();
-        floor[5][7] = new Wall();
+        floor[5][7] = new PlainFloor();
         floor[6][7] = new PlainFloor();
         floor[7][7] = new PlainFloor();
         floor[8][7] = new PlainFloor();
         floor[9][7] = new PlainFloor();
         floor[10][7] = new PlainFloor();
         floor[11][7] = new WaterFloor();
-        floor[12][7] = new PlainFloor();
+        floor[12][7] = new Barrier();
         floor[13][7] = new PlainFloor();
 
         floor[1][8] = new PlainFloor();
@@ -136,11 +138,12 @@ public class BoardLevel3 extends Board {
         floor[13][8] = new PlainFloor();
 
         floor[1][9] = new PlainFloor();
-        floor[2][9] = new PlainFloor();
+        floor[2][9] = new IntegratedCircuit();
+        chipLeft++;
         floor[3][9] = new Wall();
         floor[4][9] = new Wall();
-        floor[5][9] = new Wall();
-        floor[6][9] = new PlainFloor();
+        floor[5][9] = new WaterFloor();
+        floor[6][9] = new FireBoots();
         floor[7][9] = new PlainFloor();
         floor[8][9] = new Wall();
         floor[9][9] = new PlainFloor();
@@ -148,57 +151,9 @@ public class BoardLevel3 extends Board {
         floor[11][9] = new IntegratedCircuit();
         chipLeft++;
         floor[12][9] = new Wall();
-        floor[13][9] = new PlainFloor();
+        floor[13][9] = new FinishFloor();
 
-        for (int i = 1; i <= 7; i++) {
-            floor[i][10] = new PlainFloor();
-        }
-        for (int i = 8; i <= 12; i++) {
-            floor[i][10] = new Wall();
-        }
-
-        floor[13][10] = new Barrier();
-
-        floor[1][11] = new PlainFloor();
-
-        for (int i = 2; i <= 6; i++) {
-            floor[i][11] = new Wall();
-        }
-        floor[7][11] = new PlainFloor();
-        floor[8][11] = new Wall();
-        floor[9][11] = new FinishFloor();
-        floor[10][11] = new FireFloor();
-        floor[11][11] = new FireFloor();
-        floor[12][11] = new WaterFloor();
-        floor[13][11] = new FireFloor();
-
-        floor[1][12] = new PlainFloor();
-        floor[2][12] = new Wall();
-        floor[3][12] = new WaterFloor();
-        floor[4][12] = new WaterFloor();
-        floor[5][12] = new PlainFloor();
-        floor[6][12] = new PlainFloor();
-        floor[7][12] = new FireFloor();
-        floor[8][12] = new Wall();
-        floor[9][12] = new FireFloor();
-        floor[10][12] = new WaterFloor();
-        floor[11][12] = new FireFloor();
-        floor[12][12] = new WaterFloor();
-        floor[13][12] = new FireFloor();
-
-        floor[1][13] = new PlainFloor();
-        floor[2][13] = new FireBoots();
-        floor[3][13] = new WaterFloor();
-        floor[4][13] = new IntegratedCircuit();
-        chipLeft++;
-        floor[5][13] = new FireFloor();
-        floor[6][13] = new WaterFloor();
-        floor[7][13] = new PlainFloor();
-        floor[8][13] = new Wall();
-
-        for (int i = 9; i < floor.length - 1; i++) {
-            floor[i][13] = new FireFloor();
-        }
+     
 
     }
     
