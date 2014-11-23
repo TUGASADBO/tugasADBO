@@ -10,12 +10,11 @@ package engine;
  * @author i13026 i13011
  */
 public class BoardLevel4 extends Board {
-
+    
     public BoardLevel4() {
         chip = new Chip();
-        isGameOver = false;
-        isFinish = false;
         chipLeft = 0;
+        time = 100;
         floor = new Floor[15][15];
         for (int i = 0; i < floor.length; i++) {
             floor[i][0] = new Wall();
@@ -200,5 +199,10 @@ public class BoardLevel4 extends Board {
         floor[12][13] = new PlainFloor();
         floor[13][13] = new FinishFloor();
 
+    }
+    
+    @Override
+    public int getTime() {
+        return time;
     }
 }

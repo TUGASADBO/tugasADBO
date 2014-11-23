@@ -12,16 +12,14 @@ import java.util.ArrayList;
  * @author i13026 i13011
  */
 public class Board {
+
     protected Floor[][] floor;
     protected Chip chip;
-    protected boolean isFinish;
     protected int chipLeft;
-    protected boolean isGameOver;
+    protected int time;
 
     public Board() {
-        isGameOver = false;
-        isFinish = false;
-        chipLeft = 0;
+        
     }
 
     public void setFloor(Floor flo, int x, int y) {
@@ -35,32 +33,24 @@ public class Board {
     public int getLength() {
         return this.floor.length;
     }
-        
-    public int getChipLeft(){
+
+    public int getHeight() {
+        return this.floor[0].length;
+    }
+    
+    public int getChipLeft() {
         return this.chipLeft;
     }
-    
-    public void setChipLeft(){
+
+    public void setChipLeft() {
         this.chipLeft--;
     }
-    
-    public boolean getIsFinish(){
-        return isFinish;
-    }
-    
-    public void setFinish(){
-        isFinish=true;
-    }
-    
-    public boolean getIsGameOver(){
-        return isGameOver;
-    }
-    
-    public void setIsGameOver(){
-        isGameOver=true;
-    }
 
-    public Chip getChip(){
+    public Chip getChip() {
         return this.chip;
+    }
+    
+    public int getTime(){
+        return time;
     }
 }

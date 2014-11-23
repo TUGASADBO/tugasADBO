@@ -16,9 +16,13 @@ import javax.swing.*;
  *
  * @author i13026 i13011
  */
-public class Main extends JPanel {
+public class Main extends JPanel implements Runnable{
 
-    Board board; 
+    private static int FRAME_WIDTH;
+    private static int FRAME_HEIGHT;
+    private static JFrame frame;
+    Thread thread;
+    Board board;
     GamePlay game;
     Chip chip;
     Image wallImage;
@@ -34,13 +38,14 @@ public class Main extends JPanel {
     Image chipLeft;
     Image chipRight;
     Image chipUp;
+    Graphics2D g2d;
     int curX;
     int curY;
+    int time;
 
     public Main() throws IOException {
-        game = new GamePlay();
-        board = game.getBoard();
-        chip = board.getChip();
+        setBackground(new Color(210, 210, 210));
+        resetGame();
         wallImage = ImageIO.read(getClass().getClassLoader().getResource("image/wall.png"));
         floorImage = ImageIO.read(getClass().getClassLoader().getResource("image/plainFloor.png"));
         ICImage = ImageIO.read(getClass().getClassLoader().getResource("image/IC.png"));
@@ -54,8 +59,8 @@ public class Main extends JPanel {
         chipLeft = ImageIO.read(getClass().getClassLoader().getResource("image/chipLeft.png"));
         chipRight = ImageIO.read(getClass().getClassLoader().getResource("image/chipRight.png"));
         chipUp = ImageIO.read(getClass().getClassLoader().getResource("image/chipUp.png"));
-        curX = chip.getPositionX();
-        curY = chip.getPositionY();
+        thread = new Thread(this);
+        thread.start();
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
             Floor flo = null;
@@ -70,7 +75,7 @@ public class Main extends JPanel {
                 floAwal = board.getFloor()[(curX / 50) - 1][(curY / 50) - 1];
                 xAwal = (curX / 50) - 1;
                 yAwal = (curY / 50) - 1;
-                if (!board.getIsFinish() && !board.getIsGameOver()) {
+                if (!game.isWin() && !game.getIsGameOver()) {
                     switch (e.getKeyCode()) {
                         case KeyEvent.VK_LEFT:
                             xMove = ((curX - 50) / 50) - 1;
@@ -128,27 +133,25 @@ public class Main extends JPanel {
                             }
                             chip.setDirection(3);
                             break;
-                        case KeyEvent.VK_ENTER:
-                            game.resetGame();
-                            break;
                     }
                     repaint();
                     flo = board.getFloor()[xMove][yMove];
                     if (flo.isCanMove()) {
                         if (flo.isKill()) {
                             if ((flo.getClass().equals(FireFloor.class) && !chip.wearFireBoot()) || ((flo.getClass().equals(WaterFloor.class) && !chip.wearWaterBoot()))) {
-                                board.setIsGameOver();
+                                game.setIsGameOver(true);
                             }
                         } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                             board.setChipLeft();
+                            game.setScore(game.getScore()+100);
                         } else if (flo.getClass().equals(FinishFloor.class)) {
-                            board.setFinish();
-                            chip.setWearFireBoot(false);
-                            chip.setWearWaterBoot(false);
-                            game.addLevel();
-                            board = game.getBoard();
-                            curX = 300;
-                            curY = 300;
+                            game.setScore(game.getScore()+(time*10));
+                            if (game.getLevel() == game.getListBoard().size()) {
+                                game.setWin(true);
+                            } else {
+                                levelUp();
+                            }
+                            
                         }
                         if (!flo.isObstacles()) {
                             if (flo.getClass().equals(FireFloor.class) || flo.getClass().equals(WaterFloor.class)) {
@@ -162,14 +165,10 @@ public class Main extends JPanel {
                             chip.setWearWaterBoot(true);
                         }
                     }
-                } else if (board.getIsGameOver()) {
+                } else if (game.getIsGameOver() || game.isWin()) {
                     switch (e.getKeyCode()) {
                         case KeyEvent.VK_ENTER:
-                            game= new GamePlay();
-                            board=game.getBoard();
-                            chip.setDirection(1);
-                            curX=300;
-                            curY=300;
+                            resetGame();
                             break;
                     }
                     repaint();
@@ -178,29 +177,45 @@ public class Main extends JPanel {
         });
     }
 
+    public void clear(Graphics g) {
+        super.paintComponent(g);
+    }
+
     public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        for (int i = 0; i < board.getLength(); i++) {
-            for (int j = 0; j < board.getLength(); j++) {
-                Image img = this.getImage(board.getFloor()[i][j]);
-                g2d.drawImage(img, 50 * (i + 1), 50 * (j + 1), null);
-                if (chip.getDirection() == 1) {
-                    g2d.drawImage(chipDown, curX, curY, null);
-                } else if (chip.getDirection() == 2) {
-                    g2d.drawImage(chipRight, curX, curY, null);
-                } else if (chip.getDirection() == 3) {
-                    g2d.drawImage(chipUp, curX, curY, null);
-                } else if (chip.getDirection() == 4) {
-                    g2d.drawImage(chipLeft, curX, curY, null);
+        g2d = (Graphics2D) g;
+        g2d.setFont(new Font("Calibri", 20, 24));
+        if (game.getIsGameOver()) {
+            clear(g);
+            g2d.drawString("YOU FAIL!", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) - 50);
+            g2d.drawString("Your Score = " + game.getScore(), (FRAME_WIDTH / 3), FRAME_HEIGHT / 2);
+            g2d.drawString("Press Enter to Restart", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2)+50);
+        } else if (game.isWin()) {
+            clear(g);
+            g2d.drawString("YOU WIN!", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) - 50);
+            g2d.drawString("Your Score = " + game.getScore(), (FRAME_WIDTH / 3), FRAME_HEIGHT / 2);
+            g2d.drawString("Press Enter to restart", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) + 50);
+        } else {
+            clear(g);
+            g2d.drawString("LEVEL : " + game.getLevel(), 50, 35);
+            g2d.drawString("TIME : " + this.time , 175, 35);
+            g2d.drawString("CHIP LEFT : " + board.getChipLeft(), 300, 35);
+            g2d.drawString("SCORE : "+game.getScore(),450,35);
+            for (int i = 0; i < board.getLength(); i++) {
+                for (int j = 0; j < board.getLength(); j++) {
+                    Image img = this.getImage(board.getFloor()[i][j]);
+                    g2d.drawImage(img, 50 * (i + 1), 50 * (j + 1), null);
+                    if (chip.getDirection() == 1) {
+                        g2d.drawImage(chipDown, curX, curY, null);
+                    } else if (chip.getDirection() == 2) {
+                        g2d.drawImage(chipRight, curX, curY, null);
+                    } else if (chip.getDirection() == 3) {
+                        g2d.drawImage(chipUp, curX, curY, null);
+                    } else if (chip.getDirection() == 4) {
+                        g2d.drawImage(chipLeft, curX, curY, null);
+                    }
                 }
             }
         }
-//        if (board.getIsGameOver()) {
-//            g2d.drawString("Press Enter to restart", 300, 300);
-//        } else if(game.getLevel()>game.getListBoard().size()){
-//            setBackground(Color.BLACK);
-//            g2d.drawString("Press Enter to restart", 300, 300);
-//        }
     }
 
     public Image getImage(Floor floor) {
@@ -231,15 +246,65 @@ public class Main extends JPanel {
         return img;
     }
 
+    public void levelUp() {
+        game.setFinish(false);
+        chip.setWearFireBoot(false);
+        chip.setWearWaterBoot(false);
+        chip.setDirection(1);
+        game.addLevel();
+        board = game.getBoard();
+        time = board.getTime();
+        game.setTime(time);
+        setDimension(board);
+        curX = ((board.getLength() + 1) * 50) / 2;
+        curY = ((board.getHeight() + 1) * 50) / 2;
+    }
+
+    public void resetGame() {
+        game = new GamePlay();
+        board = game.getBoard();
+        chip = board.getChip();
+        chip.setWearFireBoot(false);
+        chip.setWearWaterBoot(false);
+        chip.setDirection(1);
+        game.setScore(0);
+        game.setIsGameOver(false);
+        game.setFinish(false);
+        game.setWin(false);
+        time = board.getTime();
+        game.setTime(time);
+        setDimension(board);
+        curX = ((board.getLength() + 1) * 50) / 2;
+        curY = ((board.getHeight() + 1) * 50) / 2;
+    }
+
+    public void setDimension(Board board) {
+        FRAME_WIDTH = ((board.getLength() + 1) * 50) + 50;
+        FRAME_HEIGHT = ((board.getHeight() + 1) * 50) + 70;
+        frame.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        frame.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            time--;
+            repaint();
+            try{
+                Thread.sleep(1000);
+            } catch(InterruptedException ex){}
+        }
+    }
+    
     public static void main(String[] args) throws IOException {
-        JFrame game = new JFrame("Chip's Challenge");
-        game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        game.setResizable(false);
+        frame = new JFrame("Chip's Challenge");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         Main ma = new Main();
-        game.getContentPane().add("Center", ma);
-        game.pack();
-        game.setSize(new Dimension(1366, 768));
-        game.setLocationRelativeTo(null);
-        game.setVisible(true);
+        frame.getContentPane().add("Center", ma);
+        frame.pack();
+        frame.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

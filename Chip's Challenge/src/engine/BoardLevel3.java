@@ -13,10 +13,8 @@ public class BoardLevel3 extends Board {
 
     public BoardLevel3() {
         chip = new Chip();
-        isGameOver = false;
-        isFinish = false;
         chipLeft = 0;
-
+        time = 100;
         floor = new Floor[15][15];
         chip.setPositionX(400);
         chip.setPositionY(400);
@@ -202,5 +200,10 @@ public class BoardLevel3 extends Board {
             floor[i][13] = new FireFloor();
         }
 
+    }
+    
+    @Override
+    public int getTime() {
+        return time;
     }
 }

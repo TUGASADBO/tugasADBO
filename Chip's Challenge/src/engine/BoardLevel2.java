@@ -13,9 +13,8 @@ public class BoardLevel2 extends Board{
 
     public BoardLevel2() {
         chip = new Chip();
-        isGameOver = false;
-        isFinish = false;
         chipLeft = 0;
+        time = 70;
         floor = new Floor[11][11];
         for (int i = 0; i < floor.length; i++) {
             floor[i][0] = new Wall();
@@ -111,5 +110,10 @@ public class BoardLevel2 extends Board{
         floor[7][9] = new FireFloor();
         floor[8][9] = new FireFloor();
         floor[9][9] = new FinishFloor();
+    }
+    
+    @Override
+    public int getTime() {
+        return time;
     }
 }
