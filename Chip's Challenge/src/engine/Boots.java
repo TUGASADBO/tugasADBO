@@ -7,11 +7,15 @@
 package engine;
 
 /**
- *
- * @author RICKY
+ * kelas ini merupakan turunan dari kelas Floor
+ * kelas ini merepresentasikan sebuah object Boots
+ * @author i13026 i13011
  */
 public abstract class Boots extends Floor{
 
+    /**
+     * constructor kelas Boots
+     */
     public Boots()
     {}
 }

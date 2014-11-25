@@ -6,11 +6,15 @@
 package engine;
 
 /**
- *
+ * kelas ini merupakan turunan dari kelas Board
+ * kelas ini adalah implementasi dari papan permainan level 4
  * @author i13026 i13011
  */
 public class BoardLevel4 extends Board {
 
+    /**
+     * constructor kelas BoardLevel4
+     */
     public BoardLevel4() {
         chip = new Chip();
         chipLeft = 0;
@@ -126,12 +130,7 @@ public class BoardLevel4 extends Board {
         floor[11][8] = new FireFloor();
         floor[12][8] = new Wall();
         floor[13][8] = new Barrier();
-
-    
-    
-      
-
-      
+        
         floor[1][9] = new PlainFloor();
         floor[2][9] = new IntegratedCircuit();
         chipLeft++;
@@ -150,6 +149,10 @@ public class BoardLevel4 extends Board {
 
     }
 
+    /**
+     * method override untuk mendapatkan waktu dari papan permainan level 4
+     * @return waktu
+     */
     @Override
     public int getTime() {
         return time;

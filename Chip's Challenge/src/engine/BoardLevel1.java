@@ -6,11 +6,15 @@
 package engine;
 
 /**
- *
+ * kelas ini merupakan turunan dari kelas Board
+ * kelas ini adalah implementasi dari papan permainan level 1
  * @author i13026 i13011
  */
 public class BoardLevel1 extends Board {
 
+    /**
+     * constructor kelas BoardLevel1
+    */
     public BoardLevel1() {
         chip = new Chip();
         chipLeft = 0;
@@ -108,6 +112,10 @@ public class BoardLevel1 extends Board {
         chipLeft++;
     }
 
+    /**
+     * method override untuk mendapatkan waktu dari papan permainan level 1
+     * @return waktu
+     */
     @Override
     public int getTime() {
         return time;

@@ -6,17 +6,26 @@ package engine;
  */
 
 /**
- *
+ * kelas ini merupakan kelas Parent
  * @author i13026 i13011
  */
-public abstract class Floor implements Obstacle{
+public abstract class Floor{
     
+    /**
+     * constructor kelas Floor
+     */
     public Floor(){
         
     }
     
+    /**
+     * method ini merupakan method abstract untuk mengetahui apakah orang tersebut bisa melangkah ke lantai ini atau tidak
+     */
     public abstract boolean isCanMove();
     
+    /**
+     * method ini merupakan method abstract untuk mengecek apakah seseorang akan mati jika menginjak lantai ini
+     */
     public abstract boolean isKill();
 
 }

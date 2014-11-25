@@ -5,6 +5,7 @@
  */
 package gui;
 
+import controller.GamePlay;
 import engine.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,36 +14,112 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- *
+ * kelas ini merupakan Viewer dari permainan
  * @author i13026 i13011
  */
-public class Main extends JPanel implements Runnable{
+public class Main extends JPanel implements Runnable {
 
+    /**
+     * atribut lebar frame dari permainan
+     */
     private static int FRAME_WIDTH;
+    /**
+     * atribut tinggi frame dari permainan
+     */
     private static int FRAME_HEIGHT;
+    /**
+     * atribut frame dari permainan
+     */
     private static JFrame frame;
+    /**
+     * atribut thread
+     */
     Thread thread;
-    Board board;
-    GamePlay game;
-    Chip chip;
-    Image wallImage;
-    Image floorImage;
-    Image barrierImage;
-    Image ICImage;
-    Image finishImage;
-    Image fireImage;
-    Image fireShoeImage;
-    Image waterShoeImage;
-    Image waterImage;
-    Image chipDown;
-    Image chipLeft;
-    Image chipRight;
-    Image chipUp;
-    Graphics2D g2d;
-    int curX;
-    int curY;
-    int time;
+    /**
+     * atribut papan dari permainan
+     */
+    private Board board;
+    /**
+     * atribut controller dari permainan
+     */
+    private GamePlay game;
+    /**
+     * atribut orang dalam permainan
+     */
+    private Chip chip;
+    /**
+     * image dari wall
+     */
+    private Image wallImage;
+    /**
+     * image dari floor
+     */
+    private Image floorImage;
+    /**
+     * image dari barrier
+     */
+    private Image barrierImage;
+    /**
+     * image dari IC
+     */
+    private Image ICImage;
+    /**
+     * image dari finishFloor
+     */
+    private Image finishImage;
+    /**
+     * image dari fireFloor
+     */
+    private Image fireImage;
+    /**
+     * image dari sepatu api
+     */
+    private Image fireShoeImage;
+    /**
+     * image dari sepatu air
+     */
+    private Image waterShoeImage;
+    /**
+     * image dari WaterFloor
+     */
+    private Image waterImage;
+    /**
+     * image dari orang dengan direction ke bawah
+     */
+    private Image chipDown;
+    /**
+     * image dari orang dengan direction ke kiri
+     */
+    private Image chipLeft;
+    /**
+     * image dari orang dengan direction ke kanan
+     */
+    private Image chipRight;
+    /**
+     * image dari orang dengan direction ke atas
+     */
+    private Image chipUp;
+    /**
+     * atribut graphics dua dimensi
+     */
+    private Graphics2D g2d;
+    /**
+     * atribut posisi orang dalam koordinat x
+     */
+    private int curX;
+    /**
+     * atribut posisi orang dalam koordinat y
+     */
+    private int curY;
+    /**
+     * atribut sisa waktu
+     */
+    private int time;
 
+    /**
+     * constructor kelas Main
+     * @throws IOException untuk menghindari kesalahan ibput output
+     */
     public Main() throws IOException {
         setBackground(new Color(210, 210, 210));
         resetGame();
@@ -81,7 +158,7 @@ public class Main extends JPanel implements Runnable{
                             xMove = ((curX - 50) / 50) - 1;
                             yMove = (curY / 50) - 1;
                             flo = board.getFloor()[xMove][yMove];
-                            if (flo.isObstacles()) {
+                            if (!flo.isCanMove()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curX -= 50;
@@ -95,7 +172,7 @@ public class Main extends JPanel implements Runnable{
                             xMove = ((curX + 50) / 50) - 1;
                             yMove = (curY / 50) - 1;
                             flo = board.getFloor()[xMove][yMove];
-                            if (flo.isObstacles()) {
+                            if (!flo.isCanMove()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curX += 50;
@@ -109,7 +186,7 @@ public class Main extends JPanel implements Runnable{
                             xMove = (curX / 50) - 1;
                             yMove = ((curY + 50) / 50) - 1;
                             flo = board.getFloor()[xMove][yMove];
-                            if (flo.isObstacles()) {
+                            if (!flo.isCanMove()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curY += 50;
@@ -123,7 +200,7 @@ public class Main extends JPanel implements Runnable{
                             xMove = (curX / 50) - 1;
                             yMove = ((curY - 50) / 50) - 1;
                             flo = board.getFloor()[xMove][yMove];
-                            if (flo.isObstacles()) {
+                            if (!flo.isCanMove()) {
                                 if ((flo.getClass().equals(Barrier.class)) && (board.getChipLeft() == 0)) {
                                     board.setFloor(new PlainFloor(), xMove, yMove);
                                     curY -= 50;
@@ -143,21 +220,19 @@ public class Main extends JPanel implements Runnable{
                             }
                         } else if (flo.getClass().equals(IntegratedCircuit.class)) {
                             board.setChipLeft();
-                            game.setScore(game.getScore()+100);
+                            game.setScore(game.getScore() + 100);
                         } else if (flo.getClass().equals(FinishFloor.class)) {
-                            game.setScore(game.getScore()+(time*10));
+                            game.setScore(game.getScore() + (time * 10));
                             if (game.getLevel() == game.getListBoard().size()) {
                                 game.setWin(true);
                             } else {
                                 levelUp();
                             }
-                            
+
                         }
-                        if (!flo.isObstacles()) {
-                            if (flo.getClass().equals(FireFloor.class) || flo.getClass().equals(WaterFloor.class)) {
-                            } else {
-                                board.setFloor(new PlainFloor(), xMove, yMove);
-                            }
+                        if (flo.getClass().equals(FireFloor.class) || flo.getClass().equals(WaterFloor.class)) {
+                        } else {
+                            board.setFloor(new PlainFloor(), xMove, yMove);
                         }
                         if (flo.getClass().equals(FireBoots.class)) {
                             chip.setWearFireBoot(true);
@@ -177,10 +252,19 @@ public class Main extends JPanel implements Runnable{
         });
     }
 
+    /**
+     * method untuk menghapus gambar yang ada dilayar
+     * @param g objek grafik yang ingin dihapus
+     */
     public void clear(Graphics g) {
         super.paintComponent(g);
     }
 
+    /**
+     * /**
+     * method untuk menggambar grafik
+     * @param g objek grafik untuk menggambar
+     */
     public void paintComponent(Graphics g) {
         g2d = (Graphics2D) g;
         g2d.setFont(new Font("Calibri", 20, 24));
@@ -188,7 +272,7 @@ public class Main extends JPanel implements Runnable{
             clear(g);
             g2d.drawString("YOU FAIL!", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) - 50);
             g2d.drawString("Your Score = " + game.getScore(), (FRAME_WIDTH / 3), FRAME_HEIGHT / 2);
-            g2d.drawString("Press Enter to Restart", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2)+50);
+            g2d.drawString("Press Enter to Restart", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) + 50);
         } else if (game.isWin()) {
             clear(g);
             g2d.drawString("YOU WIN!", (FRAME_WIDTH / 3), (FRAME_HEIGHT / 2) - 50);
@@ -197,9 +281,9 @@ public class Main extends JPanel implements Runnable{
         } else {
             clear(g);
             g2d.drawString("LEVEL : " + game.getLevel(), 50, 35);
-            g2d.drawString("TIME : " + this.time , 175, 35);
+            g2d.drawString("TIME : " + this.time, 175, 35);
             g2d.drawString("CHIP LEFT : " + board.getChipLeft(), 300, 35);
-            g2d.drawString("SCORE : "+game.getScore(),450,35);
+            g2d.drawString("SCORE : " + game.getScore(), 450, 35);
             for (int i = 0; i < board.getLength(); i++) {
                 for (int j = 0; j < board.getHeight(); j++) {
                     Image img = this.getImage(board.getFloor()[i][j]);
@@ -218,7 +302,12 @@ public class Main extends JPanel implements Runnable{
         }
     }
 
-    public Image getImage(Floor floor) {
+    /**
+     * method untuk mendapatkan image dari suatu floor
+     * @param floor image floor yang ingin didapatkan
+     * @return image
+     */
+    private Image getImage(Floor floor) {
         Image img = null;
         for (int i = 0; i < board.getLength(); i++) {
             for (int j = 0; j < board.getLength(); j++) {
@@ -246,7 +335,10 @@ public class Main extends JPanel implements Runnable{
         return img;
     }
 
-    public void levelUp() {
+    /**
+     * method untuk mengganti level
+     */
+    private void levelUp() {
         game.setFinish(false);
         chip.setWearFireBoot(false);
         chip.setWearWaterBoot(false);
@@ -256,11 +348,16 @@ public class Main extends JPanel implements Runnable{
         time = board.getTime();
         game.setTime(time);
         setDimension(board);
-        curX = ((board.getLength() + 1) * 50) / 2;
-        curY = ((board.getHeight() + 1) * 50) / 2;
+        chip.setPositionX(((board.getLength() + 1) * 50) / 2);
+        chip.setPositionY(((board.getHeight() + 1) * 50) / 2);
+        curX = chip.getPositionX();
+        curY = chip.getPositionY();
     }
 
-    public void resetGame() {
+    /**
+     * method untuk mereset game
+     */
+    private void resetGame() {
         game = new GamePlay();
         board = game.getBoard();
         chip = board.getChip();
@@ -274,31 +371,41 @@ public class Main extends JPanel implements Runnable{
         time = board.getTime();
         game.setTime(time);
         setDimension(board);
-        curX = ((board.getLength() + 1) * 50) / 2;
-        curY = ((board.getHeight() + 1) * 50) / 2;
+        chip.setPositionX(((board.getLength() + 1) * 50) / 2);
+        chip.setPositionY(((board.getHeight() + 1) * 50) / 2);
+        curX = chip.getPositionX();
+        curY = chip.getPositionY();
     }
 
-    public void setDimension(Board board) {
+    /**
+     * method untuk mengeset dimensi dari layar permainan
+     * @param board papan permainan yang ibgin diset dimensinya
+     */
+    private void setDimension(Board board) {
         FRAME_WIDTH = ((board.getLength() + 1) * 50) + 50;
         FRAME_HEIGHT = ((board.getHeight() + 1) * 50) + 70;
         frame.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * method override untuk mnejalankan suatu animasi
+     */
     @Override
     public void run() {
-        while(true){
+        while (true) {
             time--;
-            if(time == 0){
+            if (time == 0) {
                 game.setIsGameOver(true);
             }
             repaint();
-            try{
+            try {
                 Thread.sleep(1000);
-            } catch(InterruptedException ex){}
+            } catch (InterruptedException ex) {
+            }
         }
     }
-    
+
     public static void main(String[] args) throws IOException {
         frame = new JFrame("Chip's Challenge");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
